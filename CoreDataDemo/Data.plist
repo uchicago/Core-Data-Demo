@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Artist</key>
+		<string>Developer2</string>
+		<key>Categories</key>
+		<string>Productivity</string>
+		<key>Application</key>
+		<string>To Do App</string>
+	</dict>
+	<dict>
+		<key>Artist</key>
+		<string>Developer1</string>
+		<key>Categories</key>
+		<string>Book,Productivity</string>
+		<key>Application</key>
+		<string>Book App</string>
+	</dict>
+	<dict>
+		<key>Artist</key>
+		<string>Developer1</string>
+		<key>Categories</key>
+		<string>Games,Book</string>
+		<key>Application</key>
+		<string>App 1</string>
+	</dict>
+</array>
+</plist>
