@@ -15,7 +15,9 @@
 @synthesize managedObjectContext;
 
 
-- (void)addApplication:(NSString *)application fromArtist:(NSString *)artist withCategories:(NSArray *)categories
+- (void)addApplication:(NSString *)application 
+            fromArtist:(NSString *)artist 
+        withCategories:(NSArray *)categories
 {
     NSLog(@"Adding %@",artist);
 
@@ -26,9 +28,7 @@
     // Create a new artist (if needed)
    	NSError *error = nil;
     
-    //NSEntityDescription *ent = [NSEntityDescription entityForName:@"Artist" inManagedObjectContext:self.managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Artist"];
-    //fetchRequest.entity = ent;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Artist"];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"artistName == %@", artist];
     fetchRequest.propertiesToFetch = [NSArray arrayWithObjects:@"artistName", nil];
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -36,84 +36,41 @@
     if (fetchedItems.count == 0) {
         Artist *art = (Artist *)[NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.managedObjectContext];
         art.artistName = artist;
-        //NSLog(@"New Artist:%@",artist);
-        app.artist = art;
+        app.artist = art;  // Add the artist entity to the artist property
     } else {
         app.artist = [fetchedItems lastObject];
     }
     
-    
-    
-    NSEntityDescription *cat = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
-    NSFetchRequest *fetchRequest2 = [[NSFetchRequest alloc] init];
-    fetchRequest2.entity = cat;
-    //fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name == %@", category];
+
+    // Categories
+    fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
     //fetchRequest.propertiesToFetch = [NSArray arrayWithObjects:@"name", nil];
-    NSArray *fetchedItems2 = [self.managedObjectContext executeFetchRequest:fetchRequest2 error:&error];
-    NSLog(@"Fectched:%@",fetchedItems2);
-    
+    NSArray *fetchedItems2 = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"Fectched 2:%@",fetchedItems2);
+
+    // Create a set of all seen categories
     NSMutableSet *seenCategories = [[NSMutableSet alloc] init];
     for (Category *c in fetchedItems2)
         [seenCategories addObject:c.name];
         
     for (NSString *cs in categories) {
+        // Create a new category if we haven't seen it.
         if (![[seenCategories allObjects] containsObject:cs] ) {
             Category *newCat = (Category *)[NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
             newCat.name = cs;
-            NSLog(@"New Categories:%@",cs);
             [newCat addApplicationsObject:app];
             [app addCategoriesObject:newCat];
         }
-        
+
+        // Add the data to existing category
         for (Category *c in fetchedItems2) {
             if ([c.name isEqualToString:cs]) {
                 [c addApplicationsObject:app];
                 [app addCategoriesObject:c];
             }
         }
-
     }
-    /*
-     [[anEntityAObj mutableSetValueForKey:@"bees"] addObject:aNewBObj];
-     
-     
-     
-    - (IBAction)addLessonPlan:(id)sender {
-        NSManagedObjectContext *context = [self managedObjectContext];
-        NSArray * selectedArray = [curriculums selectedObjects];
-        NSManagedObject * selected = [selectedArray objectAtIndex:0];
-        id lessonPlan = [NSEntityDescription insertNewObjectForEntityForName:@"LessonPlan" inManagedObjectContext:context];
-        NSMutableSet * lessonPlansSet = [selected mutableSetValueForKey:@"lessonPlans"];
-        [lessonPlansSet addObject:lessonPlan];
-        [lessonPlanSet setValue:lessonPlansSet forKey:@"lessonPlans"];
-        [context processPendingChanges];
-    }
-     */
-
-    /*
-    //NSLog(@"Fectched:%@",fetchedItems);
-    if (fetchedItems.count == 0) {
-        Artist *art = (Artist *)[NSEntityDescription insertNewObjectForEntityForName:@"Artist" inManagedObjectContext:self.managedObjectContext];
-        art.artistName = artist;
-        NSLog(@"New Artist:%@",artist);
-    } else {
-        app.artist = [fetchedItems lastObject];
-    }
-*/
     
-    
-/*
-    
-	// Configure the new event with information from the location.
-	CLLocationCoordinate2D coordinate = [location coordinate];
-    [app setArtist:<#(Artist *)#>
-	[event setLatitude:[NSNumber numberWithDouble:coordinate.latitude]];
-	[event setLongitude:[NSNumber numberWithDouble:coordinate.longitude]];
-	
-	// Should be timestamp, but this will be constant for simulator.
-	// [event setCreationDate:[location timestamp]];
-	[event setCreationDate:[NSDate date]];
-*/	
 	// Commit the change.
 	if (![self.managedObjectContext save:&error]) {
 		// Handle the error.
@@ -127,21 +84,19 @@
  * @description <# description #>
  *******************************************************************************/
 - (void) deleteAllObjects: (NSString *) entityDescription  {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityDescription inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
     NSError *error;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entityDescription];
     NSArray *items = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     for (NSManagedObject *managedObject in items) {
         [self.managedObjectContext deleteObject:managedObject];
         NSLog(@"%@ object deleted",entityDescription);
     }
+    
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
     }
-    
 }
 
 /*******************************************************************************
@@ -152,9 +107,7 @@
 - (void)dumpCategories 
 {
     NSError *error = nil;
-    NSEntityDescription *ent = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = ent;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Category"];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     for (Category *c in fetchedItems) {
@@ -172,9 +125,7 @@
 - (void)dumpArtists
 {
     NSError *error = nil;
-    NSEntityDescription *ent = [NSEntityDescription entityForName:@"Artist" inManagedObjectContext:self.managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = ent;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Artist"];
     
     NSArray *fetchedItems = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     for (Artist *a in fetchedItems) {

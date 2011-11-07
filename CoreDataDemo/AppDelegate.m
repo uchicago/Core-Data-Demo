@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DataHandler.h"
+#import "ArtistTableViewController.h"
 
 @implementation AppDelegate
 
@@ -20,11 +21,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
     
-    
-    
+        
     DataHandler *dh = [[DataHandler alloc] init];
     dh.managedObjectContext = self.managedObjectContext;
     [dh deleteAllObjects:@"Application"];
@@ -32,8 +30,8 @@
     [dh deleteAllObjects:@"Artist"];
     
     //
-   	NSString *path = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"];
-	NSArray *data = [NSArray arrayWithContentsOfFile:path];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"plist"];
+    NSArray *data = [NSArray arrayWithContentsOfFile:path];
     NSLog(@"Data:%@",data);
 	for (NSDictionary *app in data) {
         NSDictionary *currentDict = [NSDictionary dictionaryWithDictionary:app];
@@ -47,6 +45,24 @@
     
     [dh dumpCategories];
     [dh dumpArtists];
+    
+    
+    //NSData *data = UIImagePNGRepresentation([UIImage]); 
+    //[self setThumbnailData:data];
+    /* NSURL *url = [NSURL URLWithString:@"https://lh6.googleusercontent.com/__IUfgMDIrcY/TYoowrENNPI/AAAAAAAAAg4/xMzVZMVlh48/s144/Icon-512.png"];
+     NSData *imageData = [NSData dataWithContentsOfURL:url];
+    UIImage *img = [UIImage imageWithData:imageData];
+
+    UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(50,50,57,57)];
+    [self.window addSubview:iv];
+    iv.image = img;
+    */
+    
+    ArtistTableViewController *atvc = [[ArtistTableViewController alloc] initWithNibName:@"ArtistTableViewController" bundle:nil];
+    atvc.managedObjectContext = self.managedObjectContext;
+    self.window.rootViewController = atvc;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -198,5 +214,6 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
 
 @end

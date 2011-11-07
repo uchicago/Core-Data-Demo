@@ -29,5 +29,3 @@
 @end
 
 
-//NSData *data = UIImagePNGRepresentation([UIImage]); 
-//[self setThumbnailData:data];

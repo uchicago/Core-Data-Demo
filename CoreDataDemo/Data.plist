@@ -4,27 +4,75 @@
 <array>
 	<dict>
 		<key>Artist</key>
-		<string>Developer2</string>
+		<string>Rovio</string>
+		<key>Categories</key>
+		<string>Games</string>
+		<key>Application</key>
+		<string>Angry Birds</string>
+	</dict>
+	<dict>
+		<key>Artist</key>
+		<string>Apple</string>
+		<key>Categories</key>
+		<string>Productivity,Business</string>
+		<key>Application</key>
+		<string>Pages</string>
+	</dict>
+	<dict>
+		<key>Artist</key>
+		<string>Chillingo</string>
+		<key>Categories</key>
+		<string>Games</string>
+		<key>Application</key>
+		<string>Cut the Rope</string>
+	</dict>
+	<dict>
+		<key>Artist</key>
+		<string>Chillingo</string>
+		<key>Categories</key>
+		<string>Games</string>
+		<key>Application</key>
+		<string>Sneezies</string>
+	</dict>
+	<dict>
+		<key>Artist</key>
+		<string>Remember the Milk</string>
 		<key>Categories</key>
 		<string>Productivity</string>
 		<key>Application</key>
-		<string>To Do App</string>
+		<string>Remember the Milk</string>
 	</dict>
 	<dict>
 		<key>Artist</key>
-		<string>Developer1</string>
+		<string>Cultured Code</string>
 		<key>Categories</key>
-		<string>Book,Productivity</string>
+		<string>Productivty</string>
 		<key>Application</key>
-		<string>Book App</string>
+		<string>Tasks</string>
 	</dict>
 	<dict>
 		<key>Artist</key>
-		<string>Developer1</string>
+		<string>Adobe</string>
 		<key>Categories</key>
-		<string>Games,Book</string>
+		<string>Business</string>
 		<key>Application</key>
-		<string>App 1</string>
+		<string>Adobe Reader</string>
+	</dict>
+	<dict>
+		<key>Artist</key>
+		<string>Adobe</string>
+		<key>Categories</key>
+		<string>Business</string>
+		<key>Application</key>
+		<string>Photoshop</string>
+	</dict>
+	<dict>
+		<key>Artist</key>
+		<string>Adobe</string>
+		<key>Categories</key>
+		<string>Business</string>
+		<key>Application</key>
+		<string>In-Design</string>
 	</dict>
 </array>
 </plist>

@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		3730610C14648BCC00E18DF8 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730610B14648BCC00E18DF8 /* Artist.m */; };
 		3730610F14648BCD00E18DF8 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730610E14648BCC00E18DF8 /* Category.m */; };
-		3730611414648F8600E18DF8 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730611314648F8600E18DF8 /* Application.m */; };
+		3730612514649AF900E18DF8 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730612414649AF900E18DF8 /* Application.m */; };
+		37A2B2E21465529500497D17 /* ArtistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A2B2E01465529500497D17 /* ArtistTableViewController.m */; };
+		37A2B2E31465529500497D17 /* ArtistTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A2B2E11465529500497D17 /* ArtistTableViewController.xib */; };
 		37DC1D4B1464414300002AC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DC1D4A1464414300002AC4 /* UIKit.framework */; };
 		37DC1D4D1464414300002AC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DC1D4C1464414300002AC4 /* Foundation.framework */; };
 		37DC1D4F1464414300002AC4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DC1D4E1464414300002AC4 /* CoreGraphics.framework */; };
@@ -28,7 +30,10 @@
 		3730610D14648BCC00E18DF8 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Category.h; path = "../../../../../../Dropbox/Teaching/Lectures/Lecture 7/CoreDataDemo/CoreDataDemo/Category.h"; sourceTree = "<group>"; };
 		3730610E14648BCC00E18DF8 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Category.m; path = "../../../../../../Dropbox/Teaching/Lectures/Lecture 7/CoreDataDemo/CoreDataDemo/Category.m"; sourceTree = "<group>"; };
 		3730611014648BCD00E18DF8 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Application.h; path = "../../../../../../Dropbox/Teaching/Lectures/Lecture 7/CoreDataDemo/CoreDataDemo/Application.h"; sourceTree = "<group>"; };
-		3730611314648F8600E18DF8 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Application.m; path = ../Application.m; sourceTree = "<group>"; };
+		3730612414649AF900E18DF8 /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Application.m; path = "../../../../../../Dropbox/Teaching/Lectures/Lecture 7/CoreDataDemo/CoreDataDemo/Application.m"; sourceTree = "<group>"; };
+		37A2B2DF1465529500497D17 /* ArtistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistTableViewController.h; sourceTree = "<group>"; };
+		37A2B2E01465529500497D17 /* ArtistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistTableViewController.m; sourceTree = "<group>"; };
+		37A2B2E11465529500497D17 /* ArtistTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArtistTableViewController.xib; sourceTree = "<group>"; };
 		37DC1D461464414300002AC4 /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DC1D4A1464414300002AC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		37DC1D4C1464414300002AC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +101,9 @@
 				37DC1D5C1464414300002AC4 /* AppDelegate.m */,
 				37FA3765146476E800D84DEB /* DataHandler.h */,
 				37FA3766146476E800D84DEB /* DataHandler.m */,
+				37A2B2DF1465529500497D17 /* ArtistTableViewController.h */,
+				37A2B2E01465529500497D17 /* ArtistTableViewController.m */,
+				37A2B2E11465529500497D17 /* ArtistTableViewController.xib */,
 				37FA37741464787D00D84DEB /* Model */,
 				37DC1D531464414300002AC4 /* Supporting Files */,
 			);
@@ -118,8 +126,8 @@
 			children = (
 				37FA37601464719F00D84DEB /* Data.plist */,
 				37DC1D5E1464414300002AC4 /* CoreDataDemo.xcdatamodeld */,
+				3730612414649AF900E18DF8 /* Application.m */,
 				3730611014648BCD00E18DF8 /* Application.h */,
-				3730611314648F8600E18DF8 /* Application.m */,
 				3730610D14648BCC00E18DF8 /* Category.h */,
 				3730610E14648BCC00E18DF8 /* Category.m */,
 				3730610A14648BCC00E18DF8 /* Artist.h */,
@@ -181,6 +189,7 @@
 			files = (
 				37DC1D571464414300002AC4 /* InfoPlist.strings in Resources */,
 				37FA37611464719F00D84DEB /* Data.plist in Resources */,
+				37A2B2E31465529500497D17 /* ArtistTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +206,8 @@
 				37FA3767146476E800D84DEB /* DataHandler.m in Sources */,
 				3730610C14648BCC00E18DF8 /* Artist.m in Sources */,
 				3730610F14648BCD00E18DF8 /* Category.m in Sources */,
-				3730611414648F8600E18DF8 /* Application.m in Sources */,
+				3730612514649AF900E18DF8 /* Application.m in Sources */,
+				37A2B2E21465529500497D17 /* ArtistTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
